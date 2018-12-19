@@ -1,0 +1,157 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="page-title">
+        Alta de <span class="fw-semi-bold">Usuarios</span>
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 col-12">
+      <section class="widget" widget>
+        <header>
+          <h5>Formulario para alta de<small> usuarios en el sistema</small></h5>
+          <div class="widget-controls">
+            <a data-widgster="expand" title="Expand" href="#"
+              ><i class="glyphicon glyphicon-chevron-up"></i
+            ></a>
+            <a data-widgster="collapse" title="Collapse" href="#"
+              ><i class="glyphicon glyphicon-chevron-down"></i
+            ></a>
+            <a data-widgster="close" title="Close" href="#"
+              ><i class="glyphicon glyphicon-remove"></i
+            ></a>
+          </div>
+        </header>
+        <div class="widget-body p-4">
+          <form
+            class="form-horizontal form-label-left parsleyjs"
+            method="post"
+            data-parsley-priority-enabled="false"
+            novalidate="novalidate"
+          >
+            <fieldset>
+              <div class="form-group row">
+                <label class="form-control-label col-md-3 col-12" for="nombre"
+                  >Nombre</label>
+                <div class="col-md-9 col-12">
+                  <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    class="form-control"
+                    required="required"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="form-control-label col-md-3 col-6" for="paterno"
+                  >Apellido paterno</label>
+                <div class="col-md-9 col-12">
+                  <input
+                    type="text"
+                    id="paterno"
+                    name="paterno"
+                    class="form-control"
+                    required="required"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="form-control-label col-md-3 col-6" for="materno"
+                  >Apellido materno</label>
+                <div class="col-md-9 col-12">
+                  <input
+                    type="text"
+                    id="materno"
+                    name="materno"
+                    class="form-control"
+                    required="required"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="form-control-label col-md-3 col-6" for="edad"
+                  >Edad</label>
+                <div class="col-md-9 col-12">
+                  <input
+                    type="number"
+                    id="edad"
+                    name="edad"
+                    class="form-control"
+                    required="required"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="form-control-label col-md-3 col-6" for="email"
+                  >Email</label>
+                <div class="col-md-9 col-12">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+
+                    required="required"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="form-control-label col-md-3 col-6" for="tel"
+                  >Teléfono</label>
+                <div class="col-md-9 col-12">
+                  <input
+                    type="text"
+                    id="tel"
+                    name="tel"
+                    class="form-control"
+                    [textMask]="phoneMask"
+                    required="required"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                  <label class="form-control-label col-md-3 col-6" for="rol"
+                  >Rol de usuario</label>
+                <div class="col-md-9 col-12">
+                  <select id="rol" class="form-control"  required="required">
+                    <option value="" disabled>Seleccione</option>
+                    <option value="1">Usuario general</option>
+                    <option value="2">Administrador</option>
+                    <option value="3">Validador</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Datos adicionales</legend>
+              <div class="form-group row">
+                <label class="col-form-label col-md-4 text-md-right">
+                  Image upload widget
+                </label>
+                <div class="col-md-8 ">
+                  <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                      <img alt="..." src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTEiIGhlaWdodD0iMTQxIj48cmVjdCB3aWR0aD0iMTkxIiBoZWlnaHQ9IjE0MSIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijk1LjUiIHk9IjcwLjUiIHN0eWxlPSJmaWxsOiNhYWE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LXNpemU6MTJweDtmb250LWZhbWlseTpBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4xOTF4MTQxPC90ZXh0Pjwvc3ZnPg==">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                    <div>
+                      <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-actions">
+              <button
+                type="submit"
+                class="btn btn-success btn-rounded float-right"
+              >
+                Guardar
+              </button>
+              <a [routerLink]=" ['../']"><button type="button" class="btn btn-danger btn-rounded">
+                Cancelar
+              </button></a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

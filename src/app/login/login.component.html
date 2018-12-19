@@ -1,0 +1,51 @@
+<div class="container">
+    <main id="content" class="widget-login-container" role="main">
+        <div class="row justify-content-center">
+            <div class="col-xl-4 col-md-6 col-10">
+                <section class="widget widget-login animated fadeInUp">
+                    <header class="text-center">
+                        <!-- <h3>Ingreso al sistema</h3> -->
+                        <img src="assets/tablero/logo.png" alt="">
+                    </header>
+                    <div class="widget-body">
+                        <p class="widget-login-info">
+                        Tablero de control
+                        </p>
+                        <p class="widget-login-info">
+                        ¿No tienes cuenta? Contacta al administrador del sistema
+                        </p>
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form mt-lg" >
+                        <div class="form-group">
+                            <input type="text" class="form-control"  id="username" placeholder="Username" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                <div *ngIf="f.username.errors.required">El username es requerido</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control"  id="password" type="password" placeholder="Password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">El password es requerido</div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <a class="mr-n-lg" [routerLink]="['recuperar-cuenta']">¿Olvidaste tu contraseña?</a>
+                                </div>
+                                <div class="col-sm-5 text-right">
+                                    <button [disabled]="loading" class="btn btn-inverse btn-sm">Login</button>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div *ngIf="error" class="alert alert-danger mt-5">{{error}}</div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer pt-5">
+        Tablero de control <span class="primary_font_family">PASE</span>  &copy; 2018
+    </footer>
+</div>
+      

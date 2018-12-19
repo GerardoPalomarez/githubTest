@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "types": []
+  },
+  // "include": [ "../node_modules/ng-autosize/**/*.ts", "**/*.ts" ],
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

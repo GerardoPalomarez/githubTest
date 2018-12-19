@@ -1,0 +1,32 @@
+<div class="container">
+  <main id="content" class="error-container" role="main">
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-md-6 col-12">
+        <div class="error-container">
+         <div class="three-cogs fa-3x d-none  d-md-block">
+            <i class="fa fa-cog fa-spin fa-2x fa-fw primary_color"></i>
+            <i class="fa fa-cog fa-spin fa-1x fa-fw secondary_color"></i>
+            <i class="fa fa-cog fa-spin fa-1x fa-fw secondary_color"></i>
+          </div>
+          <div class="three-cogs fa-3x d-md-none d-lg-none">
+              <i class="fa fa-cog fa-spin fa-2x fa-fw primary_color"></i>
+            </div>
+          <h1 class="error-code page-title d-none d-md-block">En construcción</h1>
+          <h2 class="d-sm-block d-md-none d-lg-none">En construcción</h2>
+          <p class="error-info">
+            Estamos trabajando en la construcción de esta página
+          </p>
+          <p class="error-help mb">
+            Si estás seguro de que se trata de un error, contacta al administrador
+            (<a href="mailto:admin@admin.com">admin@admin.com</a>) del sistema.
+          </p>
+          <a [routerLink]="['/']">
+            <button  class="btn btn-inverse">
+              Regresar al home <i class="fa fa-home secondary_color ml-xs"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

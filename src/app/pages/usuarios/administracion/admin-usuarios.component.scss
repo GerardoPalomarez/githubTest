@@ -1,0 +1,168 @@
+@import "../../../../scss/helpers";
+@import "../../../../../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min";
+@import "../../../../../node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min";
+@import "../../../../../node_modules/bootstrap-colorpicker/src/sass/colorpicker";
+@import "../../../../../node_modules/bootstrap-markdown/css/bootstrap-markdown.min";
+@import "../../../../../node_modules/bootstrap-select/dist/css/bootstrap-select";
+@import "../../../../../node_modules/jasny-bootstrap/dist/css/jasny-bootstrap";
+@import "../../../../../node_modules/dropzone/dist/dropzone";
+@import "../../../../scss/select2-variables";
+@import "../../../../../node_modules/select2/src/scss/core";
+@import "../../../../../node_modules/select2-bootstrap-theme/src/select2-bootstrap";
+
+
+/***********************************/
+/**            PARSLEY            **/
+/***********************************/
+
+input.parsley-error{
+  border-color: theme-color('danger');
+}
+
+.parsley-errors-list{
+  font-size: $small-font-size;
+  padding-left: 0;
+  margin-bottom: 5px;
+
+  li{
+    list-style: none;
+    color: theme-color('danger');
+  }
+}
+
+
+/**
+ * Bootstrap select
+ */
+
+ .selectpicker.form-control {
+  height: auto;
+}
+
+.bootstrap-select {
+  .dropdown-toggle {
+    padding-left: 10px;
+
+    &:after {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+  .dropdown-menu > li > a {
+    display: block;
+    width: 100%; // For `<button>`s
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: $line-height-base;
+    color: $dropdown-link-color;
+    text-align: inherit; // For `<button>`s
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+    background: none; // For `<button>`s
+    border: 0; // For `<button>`s
+
+    @include hover-focus {
+      color: $dropdown-link-hover-color;
+      text-decoration: none;
+      background-color: $dropdown-link-hover-bg;
+    }
+
+    // Active state
+    &.active {
+      @include plain-hover-focus {
+        color: $dropdown-link-active-color;
+        text-decoration: none;
+        background-color: $dropdown-link-active-bg;
+        outline: 0;
+      }
+    }
+
+    // Disabled state
+    //
+    // Gray out text and ensure the hover/focus state remains gray
+    &.disabled {
+      @include plain-hover-focus {
+        color: $dropdown-link-disabled-color;
+      }
+
+      // Nuke hover/focus effects
+      @include hover-focus {
+        text-decoration: none;
+        cursor: $cursor-disabled;
+        background-color: transparent;
+        background-image: none; // Remove CSS gradient
+      }
+    }
+  }
+}
+
+/**
+ * Jasny Bootstrap
+ * Fileinput.less
+ */
+
+ .fileinput.fileinput-new {
+  .thumbnail {
+    padding: $thumbnail-padding;
+    line-height: $line-height-base;
+    background-color: $thumbnail-bg;
+    border: $thumbnail-border-width solid $thumbnail-border-color;
+    border-radius: $thumbnail-border-radius;
+    transition: all .2s ease-in-out;
+    @include box-shadow(0 1px 2px rgba(0,0,0,.075));
+  }
+}
+
+.fileinput-preview.fileinput-exists {
+  border: 1px solid $input-border-color;
+  border-radius: $border-radius;
+  padding: 5px;
+}
+
+.fileinput.input-group {
+  display: flex;
+}
+
+.fileinput-new.input-group .btn-file,
+.fileinput-new .input-group .btn-file {
+  border-radius: 0 $border-radius $border-radius 0;
+
+  &.btn-xs,
+  &.btn-sm {
+    border-radius: 0 $border-radius-sm $border-radius-sm 0;
+  }
+  &.btn-lg {
+    border-radius: 0 $border-radius-lg $border-radius-lg 0;
+  }
+}
+
+.form-group.has-warning .fileinput {
+  .fileinput-preview {
+    color: $state-warning-text;
+  }
+  .thumbnail {
+    border-color: $state-warning-border;
+  }
+}
+.form-group.has-error .fileinput {
+  .fileinput-preview {
+    color: $state-danger-text;
+  }
+  .thumbnail {
+    border-color: $state-danger-border;
+  }
+}
+.form-group.has-success .fileinput {
+  .fileinput-preview {
+    color: $state-success-text;
+  }
+  .thumbnail {
+    border-color: $state-success-border;
+  }
+}
+
+.btn-label {
+  background: transparent;
+  left: 2px;
+  padding: 1px 6px;
+}

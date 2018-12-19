@@ -1,0 +1,29 @@
+@import "../../../scss/helpers";
+
+.bg-default {
+  background-color:  rgb(192, 192, 192) !important;
+}
+.input-group-text, .input-group-addon {
+  border-radius: 0 !important;
+  cursor: pointer;
+}
+.form-control {
+  cursor: pointer;
+}
+
+.animacion-girar {
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+

@@ -1,0 +1,149 @@
+<div class="js-sidebar-content">
+  <header class="logo d-none d-md-block">
+    <a [routerLink]=" ['/']">
+      <span class="text-white font-weight-bold primary_font_family">
+        <img class="logo" src="assets/tablero/logo.png" alt="Logo PASE">
+        <!-- PASE -->
+      </span>
+    </a>
+  </header>
+  <ul class="sidebar-nav">
+    <li routerLinkActive="active">
+        <a class="collapsed" data-target="#sidebar-dashboard" data-toggle="collapse" data-parent="#sidebar">
+          <span class="icon">
+            <i class="fa fa-desktop"></i>
+          </span>
+          Dashboard
+          <i class="toggle fa fa-angle-down"></i>
+        </a>
+        <ul id="sidebar-dashboard" class="collapse">
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['/transacciones']">Listado de transacciones</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['/dashboard']">Dashboard</a>
+          </li>
+        </ul>
+      </li>
+      <li routerLinkActive="active">
+        <a class="collapsed" data-target="#sidebar-usuarios" data-toggle="collapse" data-parent="#sidebar">
+          <span class="icon">
+            <i class="glyphicon glyphicon-user"></i>
+          </span>
+          Usuarios
+          <i class="toggle fa fa-angle-down"></i>
+        </a>
+        <ul id="sidebar-usuarios" class="collapse">
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['usuarios/admin'] ">Administración</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['usuarios'] ">Usuarios</a>
+          </li>
+        </ul>
+      </li>
+      <li routerLinkActive="active">
+        <a class="collapsed" data-target="#sidebar-tag" data-toggle="collapse" data-parent="#sidebar">
+          <span class="icon">
+            <i class="glyphicon glyphicon-qrcode"></i>
+          </span>
+          Tag
+          <i class="toggle fa fa-angle-down"></i>
+        </a>
+        <ul id="sidebar-tag" class="collapse">
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['admin-child'] ">AdminChild</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['empresa'] ">Empresa</a>
+          </li>
+        </ul>
+      </li>
+      <li routerLinkActive="active">
+        <a class="collapsed" data-target="#sidebar-cyber" data-toggle="collapse" data-parent="#sidebar">
+          <span class="icon">
+            <i class="fa fa-lock"></i>
+          </span>
+          CyberSource
+          <i class="toggle fa fa-angle-down"></i>
+        </a>
+        <ul id="sidebar-cyber" class="collapse">
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['cyber-aprobada'] ">Aprobadas</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['cyber-rechazada'] ">Rechazadas</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['cyber-revision'] ">En revisión</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['cyber-dashboard'] ">New dashboard</a>
+          </li>
+        </ul>
+      </li>
+      <li routerLinkActive="active">
+        <a class="collapsed" data-target="#sidebar-pasarela" data-toggle="collapse" data-parent="#sidebar">
+          <span class="icon">
+            <i class="glyphicon glyphicon-credit-card"></i>
+          </span>
+          Pasarela
+          <i class="toggle fa fa-angle-down"></i>
+        </a>
+        <ul id="sidebar-pasarela" class="collapse">
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['pasarela-aprobadas'] ">Aprobadas</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['pasarela-rechazadas'] ">Rechazadas</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['pasarela-revision'] ">En revisión</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['pasarela-batch'] ">Batch</a>
+          </li>
+        </ul>
+      </li>
+      <li routerLinkActive="active">
+        <a class="collapsed" data-target="#sidebar-conciliaciones" data-toggle="collapse" data-parent="#sidebar">
+          <span class="icon">
+            <i class="glyphicon glyphicon-list-alt"></i>
+          </span>
+          Conciliaciones
+          <i class="toggle fa fa-angle-down"></i>
+        </a>
+        <ul id="sidebar-conciliaciones" class="collapse">
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['conciliacion-cyber'] ">CyberSource</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['conciliacion-pasarela'] ">Pasarela</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['conciliacion-batch'] ">Batch</a>
+          </li>
+        </ul>
+      </li>
+      <li routerLinkActive="active">
+        <a class="collapsed" data-target="#sidebar-contracargos" data-toggle="collapse" data-parent="#sidebar">
+          <span class="icon">
+            <i class="glyphicon glyphicon-usd"></i>
+          </span>
+          Contracargos
+          <i class="toggle fa fa-angle-down"></i>
+        </a>
+        <ul id="sidebar-contracargos" class="collapse">
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['contracargos-nuevos'] ">Nuevos</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['contracargos-atencion'] ">En atención</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]=" ['contracargos-resueltos'] ">Resueltos</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+</div>

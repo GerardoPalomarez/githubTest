@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
-import { BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
+import { Component, OnInit , TemplateRef, EventEmitter, ViewChild} from '@angular/core';
+import { BsDatepickerConfig, BsLocaleService} from 'ngx-bootstrap/datepicker';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import * as Highcharts from 'highcharts';
 import { ApiService } from '../../services/api.service';
 import { GraficasComponent } from '../../components/graficas/graficas.component';
-// import { defineLocale } from 'ngx-bootstrap/bs-moment';
-// import { es } from 'ngx-bootstrap/locale';
-// defineLocale('es', es);
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { esLocale } from 'ngx-bootstrap/locale';
+defineLocale('es', esLocale);
 declare let jQuery: any;
 
 @Component({
@@ -19,10 +19,11 @@ declare let jQuery: any;
 export class DashboardsComponent implements OnInit {
   @ViewChild(GraficasComponent) hijo: any;
   bsConfig: Partial<BsDatepickerConfig>;
+  // bsLocale: Partial<BsLocaleService>;
   public fecha_actual: any;
   public fecha_inicio: any;
-  public time = 'T00:00:00Z';
-  public time_end = 'T23:59:59Z';
+  public time = ' 00:00:00';
+  public time_end = ' 23:59:59';
   public maxDate: any;
   public minDate: any;
   public especial_fecha_actual: any; // Fecha final
@@ -43,8 +44,8 @@ export class DashboardsComponent implements OnInit {
   public totales: any;
 
 
-  constructor( private router: Router, private apiService: ApiService ) {
-    const local = 'es';
+  constructor( private router: Router, private apiService: ApiService, private bsLocale : BsLocaleService ) {
+    this.bsLocale.use('es');
     this.bsConfig = Object.assign({},
       {
         containerClass: 'theme-dark-blue',
@@ -59,8 +60,6 @@ export class DashboardsComponent implements OnInit {
 
   }
 
-
-
   ngOnInit() {
 
     this.isLoading = true;
@@ -68,7 +67,7 @@ export class DashboardsComponent implements OnInit {
     this.infoDates = false; // No despliega la info
     this.totales = {};
     this.fecha_inicio = moment().format('YYYY-MM-DD') + this.time; // Fecha de inicio 1 dia atrás
-    this.fecha_actual = moment().format('YYYY-MM-DDThh:mm:ss[Z]'); // Fecha actual
+    this.fecha_actual = moment().format('YYYY-MM-DD HH:mm:ss'); // Fecha actual
     // console.log(this.fecha_inicio);
     // console.log(this.fecha_actual);
 
@@ -78,7 +77,7 @@ export class DashboardsComponent implements OnInit {
     // this.obtenerATransaccionesToday();
     this.obtenerATransacciones(this.fecha_inicio, this.fecha_actual);
     // Gráfica de costos por tipo de operacion
-    // this.obtenerACostos(this.fecha_inicio, this.fecha_actual);
+    this.obtenerPTransacciones(this.fecha_inicio, this.fecha_actual);
     // Gráfica de transacciones de la pasarela
     // this.obtenerPTransacciones(this.fecha_inicio, this.fecha_actual);
     // Grafica de transacciones por banco
@@ -103,10 +102,12 @@ export class DashboardsComponent implements OnInit {
   * dadas las fechas de entrada
   */
   filtrar() {
-
+    // console.log(this.fecha_actual);
+    // console.log(this.especial_fecha_actual);
     // Datos API local
     this.fecha_actual = moment(this.especial_fecha_actual).format('YYYY-MM-DD') + this.time_end; // T00:00:00Z
     this.fecha_inicio = moment(this.especial_fecha_inicio).format('YYYY-MM-DD') + this.time; // T23:59:59Z
+
     this.infoDates = false; // No despliega la info
     if (this.especial_fecha_actual === null || this.especial_fecha_inicio === null) {
       this.especial_fecha_actual = null;
@@ -124,7 +125,7 @@ export class DashboardsComponent implements OnInit {
 
         // Regresa las fechas al día de hoy
         this.fecha_inicio = moment().format('YYYY-MM-DD') + this.time;
-        this.fecha_actual = moment().format('YYYY-MM-DDThh:mm:ss[Z]');
+        this.fecha_actual = moment().format('YYYY-MM-DD HH:mm:ss');
 
       } else {
         this.infoDates = false;
@@ -134,7 +135,7 @@ export class DashboardsComponent implements OnInit {
         // Gráfica de transacciones por status
         this.obtenerATransacciones(this.fecha_inicio, this.fecha_actual);
         // Gráfica de costos por tipo de operacion
-        // this.obtenerACostos(this.fecha_inicio, this.fecha_actual);
+        this.obtenerPTransacciones(this.fecha_inicio, this.fecha_actual);
         // Gráfica de transacciones de la pasarela
         // this.obtenerPTransacciones(this.fecha_inicio, this.fecha_actual);
         // Grafica de transacciones por banco
@@ -227,6 +228,9 @@ export class DashboardsComponent implements OnInit {
           this.isValidData = false; // No hay datos
           this.isLoading = false;
           this.atransacciones.series[0].data = [];
+          this.atransacciones.exporting = {
+            enabled: false,
+          };
           this.atransacciones.title = {
             align: 'center',
             x: 0,
@@ -265,10 +269,10 @@ export class DashboardsComponent implements OnInit {
    * @param inicial
    * @param final
    */
-  obtenerACostos(inicial: any, final: any) {
-  this.costos = {
+  obtenerPTransacciones(inicial: any, final: any) {
+  this.ptransaccion = {
       chart: {
-        renderTo: 'costos',
+        renderTo: 'ptransaccion',
         type: 'column',
         options3d: {
           enabled: true,
@@ -284,16 +288,19 @@ export class DashboardsComponent implements OnInit {
       xAxis: {
         type: 'category'
       },
-      legend: {
-        enabled: false
-      },
+
       plotOptions: {
+        column: {
+          stacking: 'normal',
+          depth: 40
+      },
         series: {
           cursor: 'pointer',
           point: {
             events: {
               click: function(e) {
                 const p = e.point;
+                console.warn(p.name);
               }.bind(this)
             }
           }
@@ -303,21 +310,77 @@ export class DashboardsComponent implements OnInit {
         headerFormat: '<span style="font-size:11px">{point.name}</span><br>',
         pointFormat:
         // tslint:disable-next-line:max-line-length
-          '<span style="color:{point.color}">{point.name}</span><br>Número de transacciones:<b>{point.y}</b><br>El costo total es de:<b>${point.costo}</b> '
+          '<span style="color:{point.color}">{point.name}</span><br>Número de transacciones:<b>{point.y}</b>'
       },
-      series: [
-        {
-          colorByPoint: true,
-          data: []
-        }
-      ]
+      series: []
     };
+    this.isLoading = true;
+    this.apiService.getGraficaPasarelaBancaria(inicial, final).subscribe(
+      result => {
+
+        // tslint:disable-next-line:triple-equals
+        if ( result.objectResult.Aprobadas == 0  && result.objectResult.Rechazadas == 0 &&  result.objectResult.Discrepancias == 0) {
+
+          this.isValidData = false; // No hay datos
+          this.isLoading = false;
+          this.ptransaccion.exporting = {
+            enabled: false,
+          };
+          this.ptransaccion.title = {
+            align: 'center',
+            x: 0,
+            text : 'No se encontraron datos',
+            verticalAlign: 'center',
+            y: 200
+          };
+        } else {
+          // this.ptransaccion.title = {
+          //   text: 'Pasarela bancaria',
+          //   style: {
+          //     color: '#FF00FF',
+          //     display: 'block'
+          //   }
+          // };
+          this.ptransaccion.plotOptions.series.dataLabels = {
+            enabled: true,
+            inside: false,
+            format: 'Total {point.name}: {point.y:.1f}',
+            color: 'black'
+
+          };
+            this.ptransaccion.series = [
+            {
+                name: 'Aceptadas',
+                data: [{ name: 'Aceptadas',  y:  result.objectResult.Aprobadas }]
+            },
+            {
+                name: 'Rechazadas',
+                data: [{ name: 'Rechazadas',  y:  result.objectResult.Rechazadas }]
+            },
+            {
+                name: 'Con incidencia',
+                data: [{ name: 'Con incidencia', y: result.objectResult.Discrepancias }]
+            }
+            ];
+            this.isLoading = false;
+            this.isValidData = true; // Si hay datos
+          }
+
+        // Genera la gráfica de nuevo al terminar cualquier instrucción
+        this.hijo.generarGrafica(this.ptransaccion);
+      },
+      error => {
+        const errorMessage = <any>error;
+        console.log(errorMessage);
+        this.isLoading = false;
+      }
+    );
   }
 
-  obtenerPTransacciones(inicial: any, final: any) {
-    this.ptransaccion = {
+  obtenerACostos(inicial: any, final: any) {
+    this.costos = {
       chart: {
-        renderTo: 'ptransaccion',
+        renderTo: 'costos',
         type: 'column',
         options3d: {
           enabled: true,

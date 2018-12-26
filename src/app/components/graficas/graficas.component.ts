@@ -4,6 +4,8 @@ import Highcharts3d from 'highcharts/highcharts-3d';
 import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsXrange from 'highcharts/modules/xrange';
 import * as Exporting from 'highcharts/modules/exporting';
+import * as CSV from 'highcharts/modules/export-data';
+
 
 Exporting(Highcharts);
 Highcharts3d(Highcharts);
@@ -22,6 +24,7 @@ export class GraficasComponent implements OnInit, AfterViewInit {
       // Configuración de colores en las gráficas
       const  colores = ['#0046ad', '#7ab800', '#ff9900', '#80699B', '#ff0066',
       '#DB843D', '#92A8CD', '#A47D7C', '#B5CA92'];
+
       Highcharts.setOptions({
         colors: Highcharts.map(colores, function (color) {
           return {
@@ -36,38 +39,48 @@ export class GraficasComponent implements OnInit, AfterViewInit {
             ]
           };
         }),
+        credits: {
+          enabled: false
+        },
         chart: {
+          // backgroundColor: 'whitesmoke',
           style: {
-              fontFamily: 'Futura'
+              fontFamily: 'Futura !important',
+              'border-radius': '5px',
+          },
+          styledMode: true
+        },
+        lang: {
+          contextButtonTitle: 'Exportar la gráfica'
+        }
+        // Agrega selecciones de las series con su nombre
+        , plotOptions: {
+          series: {
+            showInLegend: true
           }
         },
-        credits: {
-          enabled: false,
-          text: 'PASE',
-          href: 'http://pase.imsoftware-dev.com'
-        }
-        , exporting: {
-          enabled: false
-
+         exporting: {
+          // style: {
+          //   fontFamily: 'sans-serif'
+          // },
+          enabled: true,
+          buttons: {
+            contextButton: {
+                menuItems: ['downloadJPEG', 'downloadPNG', 'downloadPDF']
+            }
+          },
         // Textos del exporting en español
-        //   menuItemDefinitions: {
-        //       // Custom definition
-        //       downloadPNG : {
-        //        text: 'Descargar imagen en PNG'
-        //       },
-        //       printChart : {
-        //        text: 'Imprimir gráfica'
-        //       },
-        //       downloadJPEG: {
-        //        text: 'Descargar imagen en JPEG'
-        //       },
-        //       downloadPDF: {
-        //       text: 'Descargar gráfica en PDF'
-        //       },
-        //       downloadSVG: {
-        //       text: 'Descargar imagen en SVG'
-        //       }
-        //     }
+          menuItemDefinitions: {
+              downloadJPEG: {
+               text: 'Descargar gráfica en JPEG'
+               },
+               downloadPNG: {
+                text: 'Descargar gráfica en PNG'
+               },
+               downloadPDF: {
+                text: 'Descargar gráfica en PDF'
+               }
+            }
       }
       });
   }

@@ -157,30 +157,33 @@
           <h5  class="text-white"><b>Pagadas</b></h5>
         </div>
         <div class="card-body bg-default">
-            <h3><b>{{totales.Pagadas}}</b></h3>
+            <!-- <h3><b>{{totales.Pagadas}}</b></h3> -->
+            <h3><b>0</b></h3>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <a [routerLink]=" ['/transacciones'] ">Detalles de incidencias</a>
+      <a [routerLink]=" ['/app/transacciones'] ">Detalles de incidencias</a>
     </div>
   </div>
-  <div class="row pt-5">
+  <!-- <div class="row pt-5">
     <div class="col-12">
       <h1>Antifraude</h1>
     </div>
-  </div>
-  <div class="row">
+  </div> -->
+  <div class="row pt-5">
     <div class="col-lg-6 col-sm-12">
+      <h1>Antifraude</h1>
       <h4 class="text-center">No. de transacciones por estatus</h4>
       <app-graficas [grafica]="atransacciones"></app-graficas>
     </div>
-    <!-- <div class="col-lg-6 col-sm-12">
-      <h4 class="text-center">Costo estimado por tipo de operación</h4>
-      <app-graficas [grafica]="costos"></app-graficas>
-    </div> -->
+    <div class="col-lg-6 col-sm-12">
+        <h1>Pasarela Bancaria</h1>
+      <h4 class="text-center">No. de transacciones por estatus</h4>
+      <app-graficas [grafica]="ptransaccion"></app-graficas>
+    </div>
   </div>
   <!-- <div class="row pt-5">
     <div class="col-12">

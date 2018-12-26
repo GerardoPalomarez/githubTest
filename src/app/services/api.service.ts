@@ -5,8 +5,10 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ApiService {
+  public dev = 'http://34.211.213.112/PASEDEV/api/';
+  public prod = 'http://34.211.213.112/PASE/api/';
   public localurl = 'http://localhost:3000/'; // API Local
-  public serviceurl = 'http://testapics.somee.com/api/'; // API Remota
+  public serviceurl = this.dev; // API Remota
 
   constructor(private http: HttpClient) {}
 
@@ -16,8 +18,8 @@ export class ApiService {
   * @param final
   */
   getGraficaAtransacciones(inicial: string, final: string): Observable<any> {
-    // tslint:disable-next-line:max-line-length
-    return this.http.get(this.serviceurl + 'CyberSource/GetTotalTransactionsByDateFromDB?startDate=' + inicial + '&endDate=' + final).pipe(map(res => res));
+    return this.http.get(this.serviceurl + 'CyberSource/GetTotalTransactionsByDateFromDB?startDate='
+    + inicial + '&endDate=' + final).pipe(map(res => res));
   }
 
   /**
@@ -26,8 +28,13 @@ export class ApiService {
    * @param final
    */
   getTotalTransaccionesByDate(inicial: string, final: string): Observable<any> {
-    // tslint:disable-next-line:max-line-length
-    return this.http.get(this.serviceurl + 'TotalTransaction/GetTotalTransactions?startDate=' + inicial + '&endDate=' + final).pipe(map(res => res));
+    return this.http.get(this.serviceurl + 'TotalTransaction/GetTotalTransactions?startDate='
+    + inicial + '&endDate=' + final).pipe(map(res => res));
 
+  }
+
+  getGraficaPasarelaBancaria(inicial: string, final: string): Observable<any> {
+    return this.http.get(this.serviceurl + 'Pasarela/GetTotalPasarelaTransactionsByDateFromDB?startDate='
+    + inicial + '&endDate=' + final).pipe(map(res => res));
   }
 }

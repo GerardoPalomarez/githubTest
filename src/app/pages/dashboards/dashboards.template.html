@@ -1,84 +1,85 @@
 <div class="container">
+  <!-- Filtrado -->
   <div class="row">
     <div class="col-12">
       <h1 class="page-title">
           Dashboard de <span class="fw-semi-bold">transacciones</span>
       </h1>
     </div>
-  </div>
-  <!-- Filtrado -->
-  <div class="row">
     <div class="col-12">
       <h3>Filtrado por fechas</h3>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-5 col-sm-12">
+    <div class="col-12">
       <div class="row">
-        <div class="col-sm">
-          <h4 class="text-center">Fecha inicial</h4>
-        </div>
-        <div class="col-sm">
-          <div  class="input-group input-medium date">
-            <span  class="input-group-addon"
-            (click)="dpI.toggle()"
-              [attr.aria-expanded]="dpI.isOpen"
-            >
-              <i  class="fa fa-calendar"></i>
-            </span>
-            <input
-            class="form-control"
-            #dpI="bsDatepicker"
-            placeholder="YYYY-MM-DD"
-            [minDate]="minDate"
-            [maxDate]="maxDate"
-            [bsConfig]="bsConfig"
-            [(ngModel)]="especial_fecha_inicio"
-            #fechaInicio="ngModel"
-            bsDatepicker>
+        <div class="col-lg-5 col-sm-12">
+          <div class="row">
+            <div class="col-sm">
+              <h4 class="text-center">Fecha inicial</h4>
+            </div>
+            <div class="col-sm">
+              <div  class="input-group input-medium date">
+                <span  class="input-group-addon"
+                (click)="dpI.toggle()"
+                  [attr.aria-expanded]="dpI.isOpen"
+                >
+                  <i  class="fa fa-calendar"></i>
+                </span>
+                <input
+                class="form-control"
+                #dpI="bsDatepicker"
+                placeholder="YYYY-MM-DD"
+                [minDate]="minDate"
+                [maxDate]="maxDate"
+                [bsConfig]="bsConfig"
+                [(ngModel)]="especial_fecha_inicio"
+                #fechaInicio="ngModel"
+                bsDatepicker
+                required>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="col-lg-5 col-sm-12">
+          <div class="row">
+            <div class="col-sm">
+              <h4 class="text-center">Fecha final</h4>
+            </div>
+            <div class="col-sm">
+              <div class="input-group input-medium date">
+                <span class="input-group-addon"
+                (click)="dpF.toggle()"
+                [attr.aria-expanded]="dpF.isOpen"
+                >
+                  <i class="fa fa-calendar"></i>
+                </span>
+                <input type="text"
+                placeholder="YYYY-MM-DD"
+                class="form-control"
+                #dpF="bsDatepicker"
+                [minDate]="minDate"
+                [maxDate]="maxDate"
+                [bsConfig]="bsConfig"
+                [(ngModel)]="especial_fecha_actual"
+                #fechaFinal="ngModel"
+                bsDatepicker
+                required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 text-right d-none d-md-block">
+          <input class="btn primary_bg-color" id="filtrar" type="button" (click)="filtrar()" value="Filtrar">
+          <span *ngIf="isLoading"><i class="fa fa-spinner fa-2x secondary_color animacion-girar"></i></span>
+        </div>
+        <div class="col-12 pt-3 d-sm-block d-md-block d-lg-none">
+            <input class="btn btn-block primary_bg-color" id="filtrar" type="button" (click)="filtrar()" value="Filtrar">
+        </div>
+        <div class="col-12 text-center pt-3 d-sm-block d-md-block d-lg-none">
+          <span *ngIf="isLoading"><i class="fa fa-spinner fa-2x secondary_color animacion-girar"></i></span>
         </div>
       </div>
     </div>
-    <div class="col-lg-5 col-sm-12">
-      <div class="row">
-        <div class="col-sm">
-          <h4 class="text-center">Fecha final</h4>
-        </div>
-        <div class="col-sm">
-          <div class="input-group input-medium date">
-            <span class="input-group-addon"
-            (click)="dpF.toggle()"
-            [attr.aria-expanded]="dpF.isOpen"
-            >
-              <i class="fa fa-calendar"></i>
-            </span>
-            <input type="text"
-            placeholder="YYYY-MM-DD"
-            class="form-control"
-            #dpF="bsDatepicker"
-            [minDate]="minDate"
-            [maxDate]="maxDate"
-            [bsConfig]="bsConfig"
-            [(ngModel)]="especial_fecha_actual"
-            #fechaFinal="ngModel"
-            bsDatepicker>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-2 text-right d-none d-md-block">
-      <input class="btn primary_bg-color" id="filtrar" type="button" (click)="filtrar()" value="Filtrar">
-      <span *ngIf="isLoading"><i class="fa fa-spinner fa-2x secondary_color animacion-girar"></i></span>
-    </div>
-    <div class="col-12 pt-3 d-sm-block d-md-block d-lg-none">
-        <input class="btn btn-block primary_bg-color" id="filtrar" type="button" (click)="filtrar()" value="Filtrar">
-    </div>
-    <div class="col-12 text-center pt-3 d-sm-block d-md-block d-lg-none">
-      <span *ngIf="isLoading"><i class="fa fa-spinner fa-2x secondary_color animacion-girar"></i></span>
-    </div>
   </div>
-
   <!-- Mensajes  -->
   <div class="row pt-5" *ngIf="!isLoading">
     <div class="col-12">
@@ -86,7 +87,7 @@
           <span class="fw-semi-bold">Success:</span> Se han generado las gráficas con los criterios de búsqueda.
         </alert>
         <alert *ngIf="!isValidData"  type="warning" (close)="closeAlert($event)" dismissible="true">
-            <span class="fw-semi-bold">Warning:</span> No se encontraron datos con los criterios de búsqueda.
+            <span class="fw-semi-bold">Warning:</span> Alguna de las gráficas no encontraron datos con los criterios de búsqueda.
         </alert>
         <alert *ngIf="infoDates"  type="info" (close)="closeAlert($event)" dismissible="true">
             <span class="fw-semi-bold">Info:</span> El rango de fechas es erróneo. Verifique por favor.
@@ -94,125 +95,44 @@
     </div>
   </div>
   <!-- Cards totales -->
+  <div id="graficas">
+  <app-cards-totales [fechaInicio]="fecha_inicio" [fechaFinal]="fecha_actual" ></app-cards-totales>
   <div class="row">
-    <div class="col-12">
-      <h1>Transacciones</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-2 col-sm-12">
-      <div class="card text-center">
-        <div class="card-header primary_bg-color">
-          <h5  class="text-white"><b>Total</b></h5>
-        </div>
-        <div class="card-body bg-default">
-            <!-- { let total = total_antifraude + 10 } -->
-            <h3><b>{{totales.Total}}</b></h3>
-        </div>
+      <div class="col-12">
+        <a [routerLink]=" ['/app/transacciones'] ">Detalles de incidencias</a>
       </div>
     </div>
-    <div class="col-lg-2 col-sm-12">
-      <div class="card text-center">
-        <div class="card-header primary_bg-color">
-          <h5  class="text-white"><b>Antifraude</b></h5>
-        </div>
-        <div class="card-body bg-default">
-            <h3><b>{{totales.Antifraude}}</b></h3>
-        </div>
+
+  <!-- Gráficas div -->
+
+    <div class="row pt-5">
+      <div class="col-lg-6 col-sm-12">
+        <app-grafica-antifraude [fechaInicio]="fecha_inicio" [fechaFinal]="fecha_actual"></app-grafica-antifraude>
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        <app-grafica-costo-cybersource [fechaInicio]="fecha_inicio" [fechaFinal]="fecha_actual"></app-grafica-costo-cybersource>
       </div>
     </div>
-    <div class="col-lg-2 col-sm-12">
-      <div class="card text-center">
-        <div class="card-header primary_bg-color">
-          <h5  class="text-white"><b>Pasarela</b></h5>
-        </div>
-        <div class="card-body bg-default">
-            <h3><b>{{totales.Pasarela}}</b></h3>
-        </div>
+    <div class="row pt-5">
+      <div class="col-lg-6 col-sm-12">
+        <app-grafica-pasarela [fechaInicio]="fecha_inicio" [fechaFinal]="fecha_actual"></app-grafica-pasarela>
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        <app-grafica-entidad-bancaria [fechaInicio]="fecha_inicio" [fechaFinal]="fecha_actual"></app-grafica-entidad-bancaria>
       </div>
     </div>
-    <div class="col-lg-2 col-sm-12">
-      <div class="card text-center">
-        <div class="card-header primary_bg-color">
-          <h5  class="text-white"><b>Recargas</b></h5>
-        </div>
-        <div class="card-body bg-default">
-            <h3><b>{{totales.Recargas}}</b></h3>
-        </div>
+    <div class="row pt-5">
+      <div class="col-lg-6 col-sm-12">
+        <app-grafica-tipo-tarjeta [fechaInicio]="fecha_inicio" [fechaFinal]="fecha_actual"></app-grafica-tipo-tarjeta>
       </div>
-    </div>
-    <div class="col-lg-2 col-sm-12">
-      <div class="card text-center">
-        <div class="card-header primary_bg-color">
-          <h5  class="text-white"><b>Enviadas</b></h5>
-        </div>
-        <div class="card-body bg-default">
-            <h3><b>{{totales.Enviadas}}</b></h3>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-2 col-sm-12">
-      <div class="card text-center">
-        <div class="card-header primary_bg-color">
-          <h5  class="text-white"><b>Pagadas</b></h5>
-        </div>
-        <div class="card-body bg-default">
-            <!-- <h3><b>{{totales.Pagadas}}</b></h3> -->
-            <h3><b>0</b></h3>
-        </div>
+      <div class="col-lg-6 col-sm-12">
+        <app-grafica-monto-recarga [fechaInicio]="fecha_inicio" [fechaFinal]="fecha_actual"></app-grafica-monto-recarga>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <a [routerLink]=" ['/app/transacciones'] ">Detalles de incidencias</a>
-    </div>
-  </div>
-  <!-- <div class="row pt-5">
-    <div class="col-12">
-      <h1>Antifraude</h1>
-    </div>
-  </div> -->
-  <div class="row pt-5">
-    <div class="col-lg-6 col-sm-12">
-      <h1>Antifraude</h1>
-      <h4 class="text-center">No. de transacciones por estatus</h4>
-      <app-graficas [grafica]="atransacciones"></app-graficas>
-    </div>
-    <div class="col-lg-6 col-sm-12">
-        <h1>Pasarela Bancaria</h1>
-      <h4 class="text-center">No. de transacciones por estatus</h4>
-      <app-graficas [grafica]="ptransaccion"></app-graficas>
-    </div>
-  </div>
-  <!-- <div class="row pt-5">
-    <div class="col-12">
-      <h1>Pasarela</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-6 col-sm-12">
-      <h4 class="text-center">No. de transacciones por estatus</h4>
-      <app-graficas [grafica]="ptransaccion"></app-graficas>
-    </div>
-    <div class="col-lg-6 col-sm-12">
-      <h4 class="text-center">No. de transacciones por banco</h4>
-      <app-graficas [grafica]="ptransaccionb"></app-graficas>
-    </div>
-  </div>
-  <div class="row pt-5">
-    <div class="col-12">
-      <h1>Recarga</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-6 col-sm-12">
-      <h4 class="text-center">Transacciones por tipo de tarjeta </h4>
-      <app-graficas [grafica]="rtransacciont"></app-graficas>
-    </div>
-    <div class="col-lg-6 col-sm-12">
-      <h4 class="text-center">Transacciones por monto de recarga</h4>
-      <app-graficas [grafica]="rtransaccionr"></app-graficas>
-    </div>
-  </div> -->
+  <!-- <button (click)="print('graficas')" class="btn btn-inverse">
+    <i class="fa fa-print"></i>
+    &nbsp;&nbsp;
+    Print
+  </button> -->
 </div>

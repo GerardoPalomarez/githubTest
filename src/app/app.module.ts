@@ -13,8 +13,8 @@ import { BasicAuthInterceptor, ErrorInterceptor } from './services/_helpers';
 import { ErrorComponent } from './pages/error/error.component';
 import { RouterModule } from '@angular/router';
 import { AppConfig } from './app.config';
-import { ApiService } from './services/api.service';
 import { fakeBackendProvider } from './services/_helpers';
+import { DashboardService } from './services/dashboard.service';
 
 const APP_PROVIDERS = [
     AppConfig
@@ -36,7 +36,7 @@ const APP_PROVIDERS = [
       ],
     providers: [
         APP_PROVIDERS,
-        ApiService,
+        DashboardService,
         { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         // provider used to create fake backend

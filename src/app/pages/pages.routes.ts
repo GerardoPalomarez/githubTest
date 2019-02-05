@@ -13,11 +13,11 @@ const pagesRoutes: Routes = [
         children: [
             // { path: '', component: HomeComponent, canActivate: [NeedAuthGuard] },
             { path: '', component: HomeComponent},
-            { path: 'dashboard', component: DashboardsComponent},
+            // { path: 'dashboard', component: DashboardsComponent},
+            { path: 'dashboard', loadChildren: './dashboards/dashboard.module#DashboardModule'},
             // { path: 'usuarios', loadChildren: './usuarios/usuarios.module#UsuariosModule'},
             // { path: 'transacciones', loadChildren: './transacciones/transacciones.module#TransaccionesModule'},
             // { path: 'perfil', component: PerfilComponent},
-
         ]
     }
 ];

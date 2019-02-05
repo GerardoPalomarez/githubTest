@@ -1,0 +1,114 @@
+<div class="row">
+    <div class="col-12">
+      <h1>Transacciones</h1>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-lg-2 col-sm-12">
+          <div class="card text-center">
+            <div class="card-header primary_bg-color">
+              <h5  class="text-white"><b>Total</b></h5>
+            </div>
+            <div class="card-body bg-default contenedor-cards-totales">
+              <h3 class="cards-totals-number"><b>{{totales.Total | number}}</b></h3>
+              <div class="monitores text-right" *ngIf="monitoreoTotal.ServiceType == 1" >
+                <span class="badge badge-success monitoreo"  data-toggle="tooltip" data-placement="top" title="Conexión estable.{{update}}" *ngIf="monitoreoTotal.StatusType == 0"></span>
+                <span class="badge badge-warning monitoreo" data-toggle="tooltip" data-placement="top" title="Conexión inestable.{{update}}" *ngIf="monitoreoTotal.StatusType == 1"></span>
+                <span class="badge badge-danger monitoreo"  data-toggle="tooltip" data-placement="top" title="Conexión fallida.{{update}}" *ngIf="monitoreoTotal.StatusType == 2"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-12">
+          <div class="card text-center">
+            <div class="card-header primary_bg-color">
+              <h5  class="text-white"><b>Antifraude</b></h5>
+            </div>
+            <div class="card-body bg-default contenedor-cards-totales">
+                <h3 class="cards-totals-number"><b>{{totales.Antifraude | number}}</b></h3>
+                <div class="monitores text-right"  *ngIf="monitoreoAntifraude.ServiceType == 2" >
+                    <span class="badge badge-success monitoreo" data-toggle="tooltip" data-placement="top" title="Conexión estable.{{update}}" *ngIf="monitoreoAntifraude.StatusType == 0"></span>
+                    <span class="badge badge-warning monitoreo"  data-toggle="tooltip" data-placement="top" title="Conexión inestable.{{update}}" *ngIf="monitoreoAntifraude.StatusType == 1"></span>
+                    <span class="badge badge-danger monitoreo" data-toggle="tooltip" data-placement="top" title="Conexión fallida.{{update}}" *ngIf="monitoreoAntifraude.StatusType == 2" ></span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-12">
+          <div class="card text-center">
+            <div class="card-header primary_bg-color ">
+              <h5  class="text-white"><b>Pasarela</b></h5>
+            </div>
+            <div class="card-body bg-default contenedor-cards-totales">
+                <h3 class="cards-totals-number"><b>{{totales.Pasarela | number}}</b></h3>
+                <div class="monitores text-right" *ngIf="monitoreoPasarela.ServiceType == 3" >
+                  <span class="badge badge-success monitoreo" data-toggle="tooltip" data-placement="top" title="Conexión estable.{{update}}" *ngIf="monitoreoPasarela.StatusType == 0"></span>
+                  <span class="badge badge-warning monitoreo" data-toggle="tooltip" data-placement="top" title="Conexión inestable.{{update}}" *ngIf="monitoreoPasarela.StatusType == 1"></span>
+                  <span class="badge badge-danger monitoreo"  data-toggle="tooltip" data-placement="top" title="Conexión fallida.{{update}}" *ngIf="monitoreoPasarela.StatusType == 2"></span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-12">
+          <div class="card text-center">
+            <div class="card-header primary_bg-color">
+              <h5  class="text-white"><b>Recargas</b></h5>
+            </div>
+            <div class="card-body bg-default contenedor-cards-totales">
+                <h3 class="cards-totals-number"><b>{{totales.Recargas | number}}</b></h3>
+                <div class="monitores text-right" *ngIf="monitoreoRecarga.ServiceType == 4" >
+                  <span class="badge badge-success monitoreo" data-toggle="tooltip" data-placement="top" title="Conexión estable.{{update}}" *ngIf="monitoreoRecarga.StatusType == 0"></span>
+                  <span class="badge badge-warning monitoreo" data-toggle="tooltip" data-placement="top" title="Conexión inestable.{{update}}" *ngIf="monitoreoRecarga.StatusType == 1"></span>
+                  <span class="badge badge-danger monitoreo" data-toggle="tooltip" data-placement="top" title="Conexión fallida.{{update}}" *ngIf="monitoreoRecarga.StatusType == 2"></span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-12">
+          <div class="card text-center">
+            <div class="card-header primary_bg-color">
+              <h5  class="text-white"><b>Enviadas</b></h5>
+            </div>
+            <div class="card-body bg-default contenedor-cards-totales">
+                <h3 class="cards-totals-number"><b>{{totales.Enviadas | number}}</b></h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-12">
+          <div class="card text-center">
+            <div class="card-header primary_bg-color">
+              <h5  class="text-white"><b>Pagadas</b></h5>
+            </div>
+            <div class="card-body bg-default contenedor-cards-totales">
+                <!-- <h3 class="cards-totals-number"><b>{{totales.Pagadas}}</b></h3> -->
+                <h3 class="cards-totals-number"><b>{{totales.Pagadas | number}}</b></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <div class="card text-center">
+              <div class="card-header primary_bg-color">
+                <h5  class="text-white"><b>Monto total enviado</b></h5>
+              </div>
+              <div class="card-body bg-default contenedor-cards-totales">
+                  <!-- { let total = total_antifraude + 10 } -->
+                  <h3><b>{{totales.MontoTotalEnviado | currency}}</b></h3>
+              </div>
+            </div>
+          </div>
+        <div class="col-lg-6 col-sm-12">
+            <div class="card text-center">
+              <div class="card-header primary_bg-color">
+                <h5  class="text-white"><b>Monto total pagado</b></h5>
+              </div>
+              <div class="card-body bg-default contenedor-cards-totales">
+                  <!-- { let total = total_antifraude + 10 } -->
+                  <h3><b>{{totales.MontoTotalPagado | currency}}</b></h3>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>

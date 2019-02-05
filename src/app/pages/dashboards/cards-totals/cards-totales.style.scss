@@ -1,0 +1,24 @@
+
+.contenedor-cards-totales {
+  height: 80px;
+
+  .cards-totals-number {
+    font-size: 20px;
+  }
+}
+
+.bg-default {
+  background-color:  rgb(192, 192, 192) !important;
+}
+
+.monitores {
+  margin-right: -10px;
+}
+
+.monitoreo {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 1px 1px 1px rgba(8, 8, 8, 0.3);
+}

@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { GraficasComponent } from '../components/graficas/graficas.component';
+// import { GraficasComponent } from '../components/graficas/graficas.component';
 
 
 @NgModule({
@@ -26,13 +26,13 @@ declarations: [
   SidebarComponent,
   NavbarComponent,
   FooterComponent,
-  GraficasComponent
+  // GraficasComponent
 ],
 exports: [
   SidebarComponent,
   NavbarComponent,
   FooterComponent,
-  GraficasComponent
+  // GraficasComponent
 ]
 })
 export class LayoutModule { }

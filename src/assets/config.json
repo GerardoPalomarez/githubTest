@@ -1,0 +1,5 @@
+{
+  "apiServer":  "http://34.211.213.112/PASEDEV/api/Dashboard/",
+  "base": "/",
+  "timeMonitoreo" : 15
+}
